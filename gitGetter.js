@@ -21,24 +21,24 @@ let getUser = async () => {
     console.log("FOLLOWERS: " + res.followers);
     console.log("FOLLOWING: " + res.following);
     console.log("CREATED ON: " + res.created_at);
-    console.log("UPDATED ON: " + res.updated_at);
+    console.log("UPDATED ON: " + res.updated_at + "\n");
 
     console.log("Enter: 1: repo links \t 0: exit")
 
-    let num = prompt(" ");
+    let num = prompt("Type: ");
     if (num == 1) {
 
-        const repoLink = await fetch(apiURL + "/${userName}/repos");
+        const repoLink = await fetch(apiURL + `/${userName}/repos`);
         const repoRes = await repoLink.json();
         let repoLength = repoRes.length;
 
-        for (let i = 0; i <= repoLength ; i++) {
-            console.log("REPO NAME: " + repoRes[i].name);
-            console.log("REPO LINK: " + repoRes[i].html_url);
-            console.log("CREATED ON: " + repoRes[i].created_at);
-            console.log("UPDATED ON: " + repoRes[i].updated_at);
-            console.log("PUSHED ON: " + repoRes[i].pushed_at);
-            console.log("Enter 1 for next 5 repo: ");
+            for(let i = 0; i <= 4; i++){
+            console.log("REPO NAME: " + repoRes[0].name);
+            console.log("REPO LINK: " + repoRes[0].html_url);
+            console.log("CREATED ON: " + repoRes[0].created_at);
+            console.log("UPDATED ON: " + repoRes[0].updated_at);
+            console.log("PUSHED ON: " + repoRes[0].pushed_at + "\n");
+            // console.log("Enter 1 for next 5 repo: ");
         }
     }
 
