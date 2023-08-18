@@ -27,22 +27,31 @@ let getUser = async () => {
 
     let num = parseFloat(prompt("Type: "));
     if (num == 1) {
-
         const repoLink = await fetch(apiURL + `/${userName}/repos`);
         const repoRes = await repoLink.json();
         let repoLength = repoRes.length;
 
-        for (let i = 0; i <= 4; i++) {
-            if (i == repoLength) break
-            else {
+        let i = 0
+
+        let getNext = () => {
+            while (i <= repoLength) {
                 console.log(i);
                 console.log("REPO NAME: " + repoRes[i].name);
                 console.log("REPO LINK: " + repoRes[i].html_url);
                 console.log("CREATED ON: " + repoRes[i].created_at);
                 console.log("UPDATED ON: " + repoRes[i].updated_at);
                 console.log("PUSHED ON: " + repoRes[i].pushed_at + "\n");
+                i++;
+                if (i % 5 === 0) break
+                console.log("run")
             }
         }
+        getNext();
+        console.log("1: Next 5 repo\t0: exit")
+        let showNext = prompt("Type: ");
+        if (showNext == 1) {
+            getNext();
+        } else return null;
     }
 
 }
